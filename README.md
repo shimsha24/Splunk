@@ -46,5 +46,97 @@ Machine data is often analyzed to gain insights into system performance, trouble
  
   ### List of log sources:
   1. Active directory logs
-  2. 
+ 
+#### Common suspicious logs in Active Directory (AD) that may indicate potential security threats include:
+
+Logon Failures (Event ID 4625): Multiple failed logon attempts, especially from the same account or IP address, can indicate brute-force attacks.
+
+Successful Logons from Unusual Locations (Event ID 4624): Logons from unexpected geographic locations or outside normal business hours could suggest account compromise.
+
+Account Lockouts (Event ID 4740): Frequent account lockouts can point to brute-force attempts or other malicious activities targeting specific accounts.
+
+Group Membership Changes (Event IDs 4728, 4732, 4756): Changes in privileged groups like "Domain Admins" or "Enterprise Admins" can indicate privilege escalation attempts.
+
+Password Changes or Resets (Event ID 4723, 4724): Unexpected password changes or resets, especially for privileged accounts, may indicate an account takeover.
+
+New User or Computer Accounts Created (Event IDs 4720, 4741): The creation of new accounts can be a sign of an attacker establishing persistence.
+
+Changes to Security Audit Policies (Event ID 4719): Modifications to audit settings may indicate an attacker trying to cover their tracks.
+
+Kerberos Service Ticket Requests (Event ID 4769): A high volume of these requests could suggest a "pass-the-ticket" attack or Kerberos ticket harvesting.
+
+Changes in Group Policy Objects (Event ID 5136): Unauthorized modifications to Group Policy could indicate an attacker attempting to change security configurations.
+
+Clearing of Security Logs (Event ID 1102): This is a strong indicator that someone may be trying to hide their tracks after unauthorized activity.
   
+#### Common suspicious firewall logs that may indicate potential security threats include:
+
+Unusual Port Scanning Activity: Multiple connection attempts to various ports from a single IP address, indicating a potential port scan (probing for open ports).
+
+Multiple Denied Connections: A high volume of connection attempts that are blocked or denied by the firewall, especially from unknown or external IPs, which could suggest a brute-force attack or malware probing the network.
+
+Traffic on Non-Standard Ports: Unexpected traffic using uncommon or non-standard ports (e.g., HTTP on port 8080 instead of 80) can indicate attempts to bypass firewall rules.
+
+Inbound Traffic from Blacklisted IPs: Connections from known malicious or blacklisted IP addresses, which could indicate a potential attack or compromise.
+
+Outbound Traffic to Unusual Destinations: Outgoing connections to unexpected or suspicious external IP addresses, often a sign of malware communicating with command-and-control servers (C2).
+
+Sudden Increase in Traffic Volume: A significant spike in traffic from or to a specific IP address, which may suggest a Denial-of-Service (DoS) or Distributed Denial-of-Service (DDoS) attack.
+
+Unusual Protocols Being Used: Unexpected use of uncommon protocols (e.g., ICMP, FTP) that are not typically used in the environment, which could be a sign of data exfiltration or reconnaissance.
+
+Allowed Traffic to Critical Servers: Traffic allowed to critical servers from external or untrusted networks, especially if it’s unusual or outside of business hours, could signal an attempt to access sensitive data.
+
+Blocked Application Layer Traffic: Application-specific traffic being blocked, such as web or email traffic, can indicate attempts to exploit vulnerabilities in those services.
+
+Frequent VPN Connection Failures: Multiple failed VPN login attempts or connections from unusual locations may point to unauthorized access attempts.
+
+Changes to Firewall Rules or Configurations: Logs showing unauthorized or unexpected changes to firewall policies or configurations, which could indicate an attacker trying to weaken the network's defenses.
+
+#### Common suspicious endpoint logs that may indicate potential security threats include:
+
+Unusual Process Execution:
+
+Logs showing the execution of uncommon or suspicious processes (e.g., powershell.exe, cmd.exe, or scripts) by non-admin users can indicate malware, exploits, or privilege escalation attempts.
+Unauthorized File Access:
+
+Logs showing access to sensitive files or directories by unauthorized users or outside normal working hours may suggest data theft or insider threats.
+Multiple Failed Login Attempts:
+
+A high number of failed login attempts, especially from a single endpoint, could signal brute-force attacks or compromised credentials.
+Execution of Untrusted Applications:
+
+Execution of applications from untrusted or unknown publishers, or applications flagged by security tools, could indicate the presence of malicious software.
+Suspicious Network Activity:
+
+Endpoint logs showing unusual outbound connections, especially to external or unfamiliar IP addresses, could be a sign of malware attempting to communicate with command-and-control (C2) servers.
+Unexpected Changes to Registry or System Files:
+
+Unauthorized changes to critical system files, registry settings, or the disabling of security tools (e.g., antivirus, firewalls) can indicate malware or tampering with security defenses.
+Privilege Escalation:
+
+Logs indicating an escalation of privileges (e.g., a standard user account suddenly gaining admin privileges) may suggest an attacker attempting to gain higher access on the system.
+Injection of Code into Legitimate Processes:
+
+Detection of code injection techniques, such as DLL injection or process hollowing, where malicious code is embedded in legitimate processes like explorer.exe or svchost.exe.
+Suspicious Script or Command Execution:
+
+Logs showing the execution of commands or scripts (e.g., PowerShell or Bash) that are unusual for typical user activity, such as running base64-encoded commands or attempting to disable security features.
+Installation of Unauthorized Software:
+
+Installation of software not approved by IT, particularly remote access tools, keyloggers, or other potentially malicious software.
+Excessive File Modification or Deletion:
+
+Large numbers of file changes or deletions within a short time frame may be indicative of ransomware encrypting files.
+Unusual USB Device Activity:
+
+Logs showing the connection of unauthorized or unusual USB devices, which could be used for data exfiltration or malware introduction.
+Antivirus or Endpoint Detection Alerts:
+
+Any alerts generated by antivirus or endpoint detection and response (EDR) tools that flag suspicious or known malicious activities, such as malware detection or quarantine events.
+Abnormal System Resource Usage:
+
+Sudden spikes in CPU, memory, or network usage that are unusual for normal endpoint operations, possibly signaling cryptojacking, malware, or botnet activity.
+Disabled Security Features:
+
+Logs indicating that key security features (e.g., antivirus, firewall, Windows Defender) have been disabled or tampered with can suggest malicious intent or a compromised endpoint.
